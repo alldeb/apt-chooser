@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ubuntu APT web download</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="bootstrap.min.css" media="screen" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+<nav class="navbar navbar-default" role="navigation">
+<div class="container">
+
+<div class="navbar-header">
+    <a href="/" class="navbar-brand">APT Chooser</a>
+</div><!--navbar-header-->
+  <ul class="nav navbar-nav">
+    <li><a href="#adminPage" data-toggle="modal" data-target="#adminPage">Admin</a></li>
+    <li><a href="#downloadTutorial" data-toggle="modal" data-target="#downloadTutorial">Download</a></li>
+  </ul>
+</div><!--container-->
+</nav>
+</header>
+
+<article class="container">
+
+<header class="page-header">
+        <h1>Create APT Package Links</h1>
+</header>
+
+<div class="row">
+<div class="col-md-6">
+
+        <form method="get" role="form" class="form-horizontal" id="MainForm">
+        <fieldset>
+        <div class="form-group">
+                <label for="repo" class="col-sm-8 control-label">Which distribution do you have?</label>
+                <div class="col-sm-4">
+                        <select name="repo" class="form-control">
+                                <option value="Trusty">Trusty</option>
+                                <option value="Precise">Precise</option>
+                        </select>
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="arch" class="col-sm-8 control-label">What architecture is your distribution compiled for?</label>
+                <div class="col-sm-4">
+                        <select name="arch" class="form-control">
+                                <option value="i386">i386</option>
+                        </select>
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="package" class="col-sm-8 control-label">What package do you need to install?</label>
+                <div class="col-sm-4">
+                <input type="text" name="package" placeholder="Exact name" class="form-control" />
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="have" class="col-sm-8 control-label">What (meta)package do you already have?</label>
+                <div class="col-sm-4">
+                <input type="text" name="have" placeholder="Recommended" class="form-control" />
+                </div>
+        </div>
+        <div class="form-group">
+        <div class="col-sm-2 col-sm-offset-8">
+        <button type="submit" name="find" class="btn btn-primary">Find</button>
+        </div>
+        </div>
+        </fieldset>
+        </form>
+    <p class="alert alert-info">
+                Examples of metapackages that are likely to be useful are <span class="text-success">''ubuntu-desktop''</span> and <span class="text-success">''kubuntu-desktop''</span>.
+                <br/>
+                <br/>
+                Generally speaking, you should specify a metapackage that matches what is already installed on your system.
+    </p>
+</div>
+<div class="col-md-6">
+    <div class="progress progress-striped active">
+    <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <p class="message alert alert-warning"></p>
+    <p class="results"></p>
+
+</div>
+</div>
+<br>
+    
+</article>
+
+<footer class="container">
+        <hr>
+        <p class="text-center">
+        <small>
+                Copyright 2006 <a href="mailto:ljlbox@tiscali.it">Lorenzo J. Lucchini</a><br />
+                2014 <a href="https://launchpad.net/~bedouin">Slamet Badwi</a><br/>
+                The source code for this web application is available under the terms of the
+                <a href="gpl.txt" class="gplLicense">GNU General Public Licence</a>.
+        </small>
+        </p>
+                <form method="get" role="form" class="from-group text-center"><button type="submit" name="source" class="btn btn-link">Download source code</button></form>
+
+</footer>
+
+<div class="modal fade" id="sourceCode" tabindex="-1" role="dialog" aria-labelledby="sourceCodeLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Copy the text below</h4>
+      </div>
+      <div class="modal-body">
+        <pre class="prettyprint"></pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="adminPage" tabindex="-1" role="dialog" aria-labelledby="adminPageLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Admin page for adding databases</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" role="form" id="admin">
+
+        <div class="form-group">
+      <table class="table">
+        <tr>
+        <th>Password</th>
+            <td>
+                <input type="text" name="pass" class="form-control" />
+            </td>
+        </tr>
+
+        <tr><th>What is the file that contains the packages data?</th>
+                    <td><input type="TEXT" name="file" class="form-control" /></td>
+            </tr>
+        <tr><th>What repository does it refer to?</th>
+                    <td><input type="TEXT" name="repo" class="form-control" /></td>
+            </tr>
+        <tr><th>What component does it list?</th>
+                    <td><input type="TEXT" name="component" class="form-control" /></td>
+            </tr>
+        <tr><th>What architecture are the packages for?</th>
+                    <td><input type="TEXT" name="arch" class="form-control" /></td>
+            </tr>
+      </table>
+
+        <button type="submit" name="parse" class="btn btn-primary">Add</button>
+
+        </div>
+
+        </form>
+
+      <div class="adminResults">
+      <p class="alert"></p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="downloadTutorial" tabindex="-1" role="dialog" aria-labelledby="downloadTutorialLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">How to download</h4>
+      </div>
+      <div class="modal-body">
+        Tutorial
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="license" tabindex="-1" role="dialog" aria-labelledby="licenseLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">License</h4>
+      </div>
+      <div class="modal-body">
+      <pre class="gpl"></pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="jquery-latest.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="aptchooser.js"></script>
+
+</body>
+</html>
