@@ -1,0 +1,45 @@
+{
+    "dist": [
+        {
+            "nama": "Kubuntu 14.04 32 bit"
+        },
+        {
+            "nama": "Kubuntu 14.04 64 bit"
+        },
+        {
+            "nama": "Ubuntu 14.04 64 bit"
+        },
+        {
+            "nama": "Xubuntu 14.04 64 bit"
+        },
+        {
+            "nama": "Lubuntu 14.04 64 bit"
+        },
+        {
+            "nama": "Kubuntu 12.04 32 bit"
+        },
+        {
+            "nama": "Ubuntu 12.04 32 bit"
+        },
+        {
+            "nama": "Xubuntu 12.04 32 bit"
+        }
+    ],
+    "mirror": [
+        {
+            "nama": "Server Pusat"
+        },
+        {
+            "nama": "UNDIP Semarang"
+        },
+        {
+            "nama": "Kambing UI"
+        },
+        {
+            "nama": "UGM Yogya"
+        },
+        {
+            "nama": "Telkom"
+        }
+    ]
+}

@@ -17,7 +17,8 @@
 </div><!--navbar-header-->
   <ul class="nav navbar-nav">
     <li><a href="#adminPage" data-toggle="modal" data-target="#adminPage">Admin</a></li>
-    <li><a href="#downloadTutorial" data-toggle="modal" data-target="#downloadTutorial">Download</a></li>
+    <li><a href="#downloadTutorial" data-toggle="modal" data-target="#downloadTutorial">Cara Unduh</a></li>
+    <li class="apt-web active"><a href="#SecondForm">Ganti Form</a></li>
   </ul>
 </div><!--container-->
 </nav>
@@ -26,7 +27,7 @@
 <article class="container">
 
 <header class="page-header">
-        <h1>Create APT Package Links</h1>
+        <h1>Membuat tautan unduhan paket Ubuntu</h1>
 </header>
 
 <div class="row">
@@ -34,8 +35,9 @@
 
         <form method="get" role="form" class="form-horizontal" id="MainForm">
         <fieldset>
+        <legend>APT Chooser</legend>
         <div class="form-group">
-                <label for="repo" class="col-sm-8 control-label">Which distribution do you have?</label>
+                <label for="repo" class="col-sm-8 control-label">Apa Versi Ubuntu Anda?</label>
                 <div class="col-sm-4">
                         <select name="repo" class="form-control">
                                 <option value="Trusty">Trusty</option>
@@ -44,38 +46,77 @@
                 </div>
         </div>
         <div class="form-group">
-                <label for="arch" class="col-sm-8 control-label">What architecture is your distribution compiled for?</label>
+                <label for="arch" class="col-sm-8 control-label">Apa arsitektur prosesor komputer Anda?</label>
                 <div class="col-sm-4">
                         <select name="arch" class="form-control">
                                 <option value="i386">i386</option>
+                                <option value="amd64">amd64</option>
                         </select>
                 </div>
         </div>
         <div class="form-group">
-                <label for="package" class="col-sm-8 control-label">What package do you need to install?</label>
+                <label for="package" class="col-sm-8 control-label">Nama paket yang anda cari:</label>
                 <div class="col-sm-4">
-                <input type="text" name="package" placeholder="Exact name" class="form-control" />
+                <input type="text" name="package" placeholder="Harus tepat" class="form-control" />
                 </div>
         </div>
         <div class="form-group">
-                <label for="have" class="col-sm-8 control-label">What (meta)package do you already have?</label>
+                <label for="have" class="col-sm-8 control-label">Apa varian Ubuntu yang anda punya?</label>
                 <div class="col-sm-4">
-                <input type="text" name="have" placeholder="Recommended" class="form-control" />
+                <input type="text" name="have" placeholder="Baca keterangan" class="form-control" />
                 </div>
         </div>
         <div class="form-group">
         <div class="col-sm-2 col-sm-offset-8">
-        <button type="submit" name="find" class="btn btn-primary">Find</button>
+        <button type="submit" name="find" class="btn btn-primary">Cari</button>
         </div>
         </div>
         </fieldset>
+        <p class="alert alert-info">
+         Pada ruas terakhir, isilah <span class="text-success">''ubuntu-desktop''</span> (tanpa kutip) jika anda meng-instal Ubuntu Unity, atau misalnya <span class="text-success">''xubuntu-desktop''</span> jika anda meng-instal Xubuntu, dst.
+         <br/>
+         <br/>
+         Sebaiknya anda mengisi bagian itu karena akan meminimalisasi jumlah unduhan paket.
+        </p>
         </form>
-    <p class="alert alert-info">
-                Examples of metapackages that are likely to be useful are <span class="text-success">''ubuntu-desktop''</span> and <span class="text-success">''kubuntu-desktop''</span>.
-                <br/>
-                <br/>
-                Generally speaking, you should specify a metapackage that matches what is already installed on your system.
-    </p>
+       <!--Form Apt-Web-->
+        <form method="post" role="form" class="form-horizontal" id="SecondForm">
+	<fieldset>
+	<legend>APT WEB</legend>
+	<div class="form-group">
+	<label for="dist" class="col-sm-4 control-label">Versi Ubuntu</label>
+	<div class="col-sm-8">
+	    <select name="dist" class="form-control">
+	    <option value="">Pilih varian</option>
+	    </select>
+	    </div>
+	</div>
+	<div class="form-group">
+	<label for="mirror" class="col-sm-4 control-label">Server Mirror</label>
+	<div class="col-sm-8">
+	    <select name="mirror" class="form-control">
+	    <option value="">Pilih mirror</option>
+	    </select>
+	    </div>
+	</div>
+	<div class="form-group has-success">
+	<label for="packages" class="col-sm-4 control-label">Nama paket</label>
+	<div class="col-sm-8">
+	    <input class="form-control" type="text" name="packages" placeholder="Paket yang dicari"/>
+	</div>
+	</div>
+	<div class="form-group">
+	<div class="col-sm-4 col-sm-offset-4">
+	<button type="submit" name="submit" class="btn btn-success">Temukan</button>
+	</div>
+	<!--cek server-->
+	<br/><br/>
+	<div class="col-sm-8 col-sm-offset-4">
+	<p class="status hidden alert">Memeriksa aktivitas server...</p>
+	</div>
+	</div>
+	</fieldset>
+	</form>
 </div>
 <div class="col-md-6">
     <div class="progress progress-striped active">
@@ -94,13 +135,13 @@
         <hr>
         <p class="text-center">
         <small>
-                Copyright 2006 <a href="mailto:ljlbox@tiscali.it">Lorenzo J. Lucchini</a><br />
-                2014 <a href="https://launchpad.net/~bedouin">Slamet Badwi</a><br/>
-                The source code for this web application is available under the terms of the
-                <a href="gpl.txt" class="gplLicense">GNU General Public Licence</a>.
+                Hak Cipta 2006 <a href="mailto:ljlbox@tiscali.it">Lorenzo J. Lucchini</a><br />
+                 2014 Slamet Badwi<br/>
+                 Kode sumber laman ini tersedia secara bebas sesuai dengan lisensi 
+                 <a href="gpl.txt" class="gplLicense">GNU General Public Licence</a>.
         </small>
         </p>
-                <form method="get" role="form" class="from-group text-center"><button type="submit" name="source" class="btn btn-link">Download source code</button></form>
+                <form method="get" role="form" class="from-group text-center"><button type="submit" name="source" class="btn btn-link">Lihat kode sumber</button></form>
 
 </footer>
 
@@ -109,13 +150,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Copy the text below</h4>
+        <h4 class="modal-title">Kode sumber</h4>
       </div>
       <div class="modal-body">
+      <p>Anda bisa menyalin kode berikut atau lihat <a href="https://github.com/baddwin/apt-chooser" target="_blank">project ini di Github</a>.</p>
         <pre class="prettyprint"></pre>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
@@ -126,7 +168,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Admin page for adding databases</h4>
+        <h4 class="modal-title">Laman admin untuk mengelola basis data</h4>
       </div>
       <div class="modal-body">
         <form method="post" role="form" id="admin">
@@ -165,7 +207,7 @@
       </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
@@ -176,13 +218,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">How to download</h4>
+        <h4 class="modal-title">Cara mengunduh</h4>
       </div>
       <div class="modal-body">
-        Tutorial
+        (Maaf, belum ditulis)
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
@@ -193,13 +235,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">License</h4>
+        <h4 class="modal-title">Lisensi</h4>
       </div>
       <div class="modal-body">
       <pre class="gpl"></pre>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
